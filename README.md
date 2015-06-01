@@ -1,6 +1,6 @@
-# seed-element
+# plus-minus
 
-An element providing a starting point for your own reusable Polymer elements.
+A simple plus/minus widget
 
 
 ## Dependencies
