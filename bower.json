@@ -13,7 +13,7 @@
   ],
   "main": "plus-minus.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/freaksauce/plus-minus-polymer/",
+  "homepage": "https://github.com/freaksauce/plus-minus-polymer1.0/",
   "ignore": [
     "/.*",
     "/test/",
