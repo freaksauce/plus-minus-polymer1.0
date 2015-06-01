@@ -1,0 +1,31 @@
+{
+  "name": "plus-minus",
+  "version": "1.0.0",
+  "authors": [
+    "Jon Bloomer <jon@freaksauce.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "seed"
+  ],
+  "main": "plus-minus.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/freaksauce/plus-minus-polymer/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}
