@@ -33,7 +33,7 @@ Example:
 
   <template>
     <div>
-      <iron-ajax auto url="demo/data.json" handle-as="json" on-response="handleResponse"></iron-ajax>
+      <iron-ajax auto url="{{dataSrc}}" handle-as="json" on-response="handleResponse"></iron-ajax>
       <paper-icon-button icon="remove" on-click="decrement"></paper-icon-button>
       <input type="text" value="{{pmVal}}"/>
       <paper-icon-button icon="add" on-click="increment"></paper-icon-button>
@@ -55,6 +55,7 @@ Example:
         value: 0
       },
       pmValues: String,
+      dataSrc: String,
       pmValuesArr: Array,
       pmValuesArrLen: Number,
       defaultValuesArr: {
@@ -72,15 +73,15 @@ Example:
     // Element Lifecycle
 
     ready: function() {
-      if (this.pmValues === '') {
-				this.pmValuesArr = this.defaultValuesArr;
-			}else{
-				this.pmValuesArr = this.pmValues.split(',');
-			}
-      this.pmVal = this.pmValuesArr[0];
-      this.pmValuesArrLen = this.pmValuesArr.length;
-      // console.log(this.pmValuesArr);
-      // console.log(this.pmVal);
+      if (this.dataSrc === undefined) {
+        if (this.pmValues === undefined) {
+  				this.pmValuesArr = this.defaultValuesArr;
+  			}else{
+  				this.pmValuesArr = this.pmValues.split(',');
+  			}
+        this.pmVal = this.pmValuesArr[0];
+        this.pmValuesArrLen = this.pmValuesArr.length;
+      }
     },
 
     // Element Behavior
@@ -102,16 +103,18 @@ Example:
     },
 
     handleResponse: function(res) {
-      var vals = res.detail.response.values;
-      var valsArr = [];
-      vals.forEach(function(obj) {
-        // console.log(obj.val);
-        valsArr.push(obj.val);
-      });
-      this.pmValuesArr = valsArr;
-      this.counter = 0;
-      this.pmValuesArrLen = this.pmValuesArr.length;
-      this.pmVal = this.pmValuesArr[this.counter];
+      // if (res.detail.reponse != null) {
+        var vals = res.detail.response.values;
+        var valsArr = [];
+        vals.forEach(function(obj) {
+          // console.log(obj.val);
+          valsArr.push(obj.val);
+        });
+        this.pmValuesArr = valsArr;
+        this.counter = 0;
+        this.pmValuesArrLen = this.pmValuesArr.length;
+        this.pmVal = this.pmValuesArr[this.counter];
+      // }
     }
   });
 
