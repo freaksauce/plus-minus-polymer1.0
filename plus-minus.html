@@ -8,6 +8,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -29,7 +32,12 @@ Example:
   </style>
 
   <template>
-    <a href="#" on-click="decrement">-</a><input type="text" value="{{pmVal}}"/><a href="#" on-click="increment">+</a>
+    <div>
+      <iron-ajax auto url="demo/data.json" handle-as="json" on-response="handleResponse"></iron-ajax>
+      <paper-icon-button icon="remove" on-click="decrement"></paper-icon-button>
+      <input type="text" value="{{pmVal}}"/>
+      <paper-icon-button icon="add" on-click="increment"></paper-icon-button>
+    </div>
   </template>
 
 </dom-module>
@@ -71,12 +79,8 @@ Example:
 			}
       this.pmVal = this.pmValuesArr[0];
       this.pmValuesArrLen = this.pmValuesArr.length;
-      console.log(this.pmValuesArr);
-      console.log(this.pmVal);
-    },
-
-    attached: function() {
-      // console.log(this.pmValues);
+      // console.log(this.pmValuesArr);
+      // console.log(this.pmVal);
     },
 
     // Element Behavior
@@ -97,7 +101,18 @@ Example:
       }
     },
 
-
+    handleResponse: function(res) {
+      var vals = res.detail.response.values;
+      var valsArr = [];
+      vals.forEach(function(obj) {
+        // console.log(obj.val);
+        valsArr.push(obj.val);
+      });
+      this.pmValuesArr = valsArr;
+      this.counter = 0;
+      this.pmValuesArrLen = this.pmValuesArr.length;
+      this.pmVal = this.pmValuesArr[this.counter];
+    }
   });
 
 </script>
