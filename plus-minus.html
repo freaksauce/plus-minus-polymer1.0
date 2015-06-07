@@ -34,9 +34,9 @@ Example:
   <template>
     <div>
       <iron-ajax auto url="{{dataSrc}}" handle-as="json" on-response="handleResponse" debounce-duration="300"></iron-ajax>
-      <paper-icon-button icon="remove" on-click="decrement"></paper-icon-button>
+      <paper-icon-button id="decremenet" icon="remove" on-click="decrement"></paper-icon-button>
       <input type="text" value="{{pmVal}}"/>
-      <paper-icon-button icon="add" on-click="increment"></paper-icon-button>
+      <paper-icon-button id="increment" icon="add" on-click="increment"></paper-icon-button>
     </div>
   </template>
 
@@ -87,18 +87,24 @@ Example:
     // Element Behavior
 
     increment: function(e) {
-      e.preventDefault();
+      if (e) {
+        e.preventDefault();
+      }
       if ((this.counter + 1) <= this.pmValuesArrLen - 1) {
         this.counter++;
         this.pmVal = this.pmValuesArr[this.counter];
+        return this.pmVal;
       }
 
     },
     decrement: function(e) {
-      e.preventDefault();
+      if (e) {
+        e.preventDefault();
+      }
       if ((this.counter - 1) >= 0) {
         this.counter--;
         this.pmVal = this.pmValuesArr[this.counter];
+        return this.pmVal;
       }
     },
 

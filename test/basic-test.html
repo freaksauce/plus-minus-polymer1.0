@@ -16,40 +16,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <!-- Step 1: import the element to test -->
-    <link rel="import" href="../seed-element.html">
+    <link rel="import" href="../plus-minus.html">
   </head>
   <body>
 
-    <!-- You can use the document as a place to set up your fixtures. -->
-    <seed-element></seed-element>
+    <plus-minus pm-values="one,two,three,four"></plus-minus>
 
     <script>
-      var myEl = document.querySelector('seed-element');
+      var myEl = document.querySelector('plus-minus');
 
-      suite('<seed-element>', function() {
+      suite('<plus-minus>', function() {
 
-        test('defines the "author" property', function() {
-          assert.equal(myEl.author.name, 'Dimitri Glazkov');
-          assert.equal(myEl.author.image, 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg');
+        test('pmVal is defined as first element of pm-values', function() {
+          assert.equal(myEl.pmVal, 'one');
         });
 
-        test('says hello', function() {
-          assert.equal(myEl.sayHello(), 'seed-element says, Hello World!');
-
-          var greetings = myEl.sayHello('greetings Earthlings');
-          assert.equal(greetings, 'seed-element says, greetings Earthlings');
+        test('increment the array', function() {
+          assert.equal(myEl.increment(), 'two');
         });
 
-        test('fires lasers', function(done) {
-          myEl.addEventListener('seed-element-lasers', function(event) {
-            assert.equal(event.detail.sound, 'Pew pew!');
-            done();
-          });
-          myEl.fireLasers();
+        test('decrement the array', function() {
+          assert.equal(myEl.decrement(), 'one');
         });
 
       });
+
     </script>
 
   </body>
