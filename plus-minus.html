@@ -103,7 +103,7 @@ Example:
     },
 
     handleResponse: function(res) {
-      // if (res.detail.reponse != null) {
+      if (res.detail.response != null) {
         var vals = res.detail.response.values;
         var valsArr = [];
         vals.forEach(function(obj) {
@@ -114,7 +114,7 @@ Example:
         this.counter = 0;
         this.pmValuesArrLen = this.pmValuesArr.length;
         this.pmVal = this.pmValuesArr[this.counter];
-      // }
+      }
     }
   });
 
